@@ -1,9 +1,9 @@
 //jshint esversion:6
 const express= require("express");
-/*const bodyParser=require("body-parser");*/
+const bodyParser=require("body-parser");
 
 const app=express();
-/*app.use(bodyParser.urlencoded({extended:true}));*/
+app.use(bodyParser.urlencoded({extended:true}));
 
 app.get("/",function(req,res){
     res.sendFile(__dirname+"/index.html")
@@ -17,7 +17,7 @@ app.post("/",function(req,res){
 })
 
 //-----Calculator-bmi---------
-app.get("/bmicalculator",function(req,res){
+app.get("/bmiCalculator",function(req,res){
     res.sendFile(__dirname+"/bmiCalculator.html")
 })
 
@@ -35,7 +35,7 @@ app.post("/cuenta",function(req,res){
     var availa=Number(req.body.dispo);
     var depo=Number(req.body.deposit);
     var money=availa+depo;
-    res.send(money)
+    res.send("Your money available es "+money)
 })
 
 app.listen(3000, function(){
