@@ -27,15 +27,25 @@ app.post("/bmicalculator",function(req,res){
     var bmi=w/(h*h)
     res.send("Your bmi es: "+bmi)
 })
+
 //--------Cajero------
 app.get("/cuenta",function(req,res){
     res.sendFile(__dirname+"/cuenta.html")
 })
+
+const iniBalance=1000
+
 app.post("/cuenta",function(req,res){
-    var availa=Number(req.body.dispo);
-    var depo=Number(req.body.deposit);
-    var money=availa+depo;
-    res.send("Your money available es "+money)
+    var deposit=Number(req.body.deposit)
+    var withdraw=Number(req.body.withdraw);
+    if(deposit>0){
+        var de=deposit+iniBalance;
+        res.send("Total balance is: "+de)
+    }
+    else if(withdraw>0){
+        var wi=iniBalance-withdraw;
+        res.send("Total balance is  is : "+wi)
+    }
 })
 
 app.listen(3000, function(){
