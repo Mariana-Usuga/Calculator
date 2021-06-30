@@ -1,8 +1,9 @@
+//jshint esversion:6
 const express= require("express");
-const bodyParser=require("body-parser");
+/*const bodyParser=require("body-parser");*/
 
 const app=express();
-app.use(bodyParser.urlencoded({extended:true}));
+/*app.use(bodyParser.urlencoded({extended:true}));*/
 
 app.get("/",function(req,res){
     res.sendFile(__dirname+"/index.html")
@@ -25,6 +26,16 @@ app.post("/bmicalculator",function(req,res){
     var h=parseFloat(req.body.height);
     var bmi=w/(h*h)
     res.send("Your bmi es: "+bmi)
+})
+//--------Cajero------
+app.get("/cuenta",function(req,res){
+    res.sendFile(__dirname+"/cuenta.html")
+})
+app.post("/cuenta",function(req,res){
+    var availa=Number(req.body.dispo);
+    var depo=Number(req.body.deposit);
+    var money=availa+depo;
+    res.send(money)
 })
 
 app.listen(3000, function(){
